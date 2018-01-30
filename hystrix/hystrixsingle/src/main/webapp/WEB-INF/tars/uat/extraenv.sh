@@ -1,0 +1,1 @@
+JAVA_OPTS="${JAVA_OPTS} -Xmx1500m -Xms1000m -Xmn800m -XX:PermSize=256M -XX:MaxPermSize=512M"

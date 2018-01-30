@@ -1,0 +1,23 @@
+server:
+  port: 60001
+eureka:
+  instance:
+    prefer-ip-address: true                       # 设置微服务调用地址为IP优先（缺省为false）
+  client:
+    service-url:
+      defaultZone: http://localhost:20011/eureka
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/milosyuwei/cloudconfig      #配置git仓库地址
+          search-paths: prop                                 #配置仓库路径
+      label: master                                           #配置仓库的分支
+  profiles:
+    active: dev
+management:
+  security:
+    enabled: false

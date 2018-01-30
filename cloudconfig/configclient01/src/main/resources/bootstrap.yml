@@ -1,0 +1,22 @@
+server:
+  port: 60011
+eureka:
+  instance:
+    prefer-ip-address: true                       # 设置微服务调用地址为IP优先（缺省为false）
+  client:
+    service-url:
+      defaultZone: http://localhost:20011/eureka
+spring:
+  application:
+    name: config-client01
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server #根据 eureka 注册的config server 名字获取配置信息
+      profile: dev
+      label: master
+
+management:
+  security:
+    enabled: false

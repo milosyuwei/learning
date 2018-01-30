@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: zuul-api-gateway
+server:
+  port: 40011
+
+eureka:
+  instance:
+    prefer-ip-address: true                       # 设置微服务调用地址为IP优先（缺省为false）
+    lease-renewal-interval-in-seconds: 5        # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 15    # 发呆时间，即服务续约到期时间（缺省为90s）
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:20011/eureka
+zuul:
+  ignored-services: "*"     #设置忽略的服务，即配置后将不会被路由（但对于明确配置在路由中的，将不会被忽略）
+  routes:
+    api-cal-sid:        # 基于 ServiceId 的映射（自定义路由的名字）
+      path: /mygateway/**    # http://127.0.0.1:40011/mygateway/add?a=6&b=16会路由至server-provider服务的/add?a=6&b=16
+      serviceId: server-provider  #serviceId

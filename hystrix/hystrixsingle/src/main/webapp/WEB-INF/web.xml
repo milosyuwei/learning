@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0" >
+
+    <display-name>deepcredit-score</display-name>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!-- 加载Spring配置文件 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:spring-config.xml
+        </param-value>
+    </context-param>
+
+
+
+    <servlet>
+        <servlet-name>mvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>mvc</servlet-name>
+        <url-pattern>/restful/*</url-pattern>
+    </servlet-mapping>
+
+
+
+
+    <filter>
+        <display-name>HystrixRequestContextServletFilter</display-name>
+        <filter-name>HystrixRequestContextServletFilter</filter-name>
+        <filter-class>com.netflix.hystrix.contrib.requestservlet.HystrixRequestContextServletFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HystrixRequestContextServletFilter</filter-name>
+        <url-pattern>/hystrix/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <display-name>HystrixRequestLogViaResponseHeaderServletFilter</display-name>
+        <filter-name>HystrixRequestLogViaResponseHeaderServletFilter</filter-name>
+        <filter-class>com.netflix.hystrix.contrib.requestservlet.HystrixRequestLogViaResponseHeaderServletFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HystrixRequestLogViaResponseHeaderServletFilter</filter-name>
+        <url-pattern>/hystrix/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <description></description>
+        <display-name>HystrixMetricsStreamServlet</display-name>
+        <servlet-name>HystrixMetricsStreamServlet</servlet-name>
+        <servlet-class>com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HystrixMetricsStreamServlet</servlet-name>
+        <url-pattern>/hystrix/hystrix.stream</url-pattern>
+    </servlet-mapping>
+
+
+
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+</web-app>

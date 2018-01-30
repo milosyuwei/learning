@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: eureka-server-ha
+---
+server:
+  port: 20001
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:20002/eureka/,http://localhost:20003/eureka/
+---
+server:
+  port: 20002
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:20001/eureka/,http://localhost:20003/eureka/
+---
+server:
+  port: 20003
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:20001/eureka/,http://localhost:20002/eureka/

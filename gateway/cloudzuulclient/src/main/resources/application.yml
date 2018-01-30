@@ -1,0 +1,12 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:20011/eureka
+server:
+  port: 30051
+spring:
+  application:
+    name: gateway-fegin-consumer
+feign:
+  hystrix:
+    enabled: true  #必须加这个，feign的hystrix才能有效

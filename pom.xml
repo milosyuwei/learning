@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.9.RELEASE</version>
+    </parent>
+
+    <groupId>com.weiyu.learning</groupId>
+    <artifactId>com.weiyu.learning.parent</artifactId>
+
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>CtripReleases</id>
+            <name>Ctrip Releases</name>
+            <url>http://maven.release.ctripcorp.com/nexus/content/groups/CtripReleases/</url>
+        </repository>
+        <repository>
+            <id>ctripdev-framework</id>
+            <name>Ctrip FrameWork Mirror</name>
+            <url>http://maven.release.ctripcorp.com/nexus/content/repositories/fxrelease/</url>
+        </repository>
+        <repository>
+            <id>ctripdev-public</id>
+            <url>http://maven.release.ctripcorp.com/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+
+    <modules>
+        <module>nettybook</module>
+        <module>springbootrestfulservice</module>
+
+        <module>eureka_server_cluster/eurekaclient1</module>
+        <module>eureka_server_cluster/eurekaclient2</module>
+        <module>eureka_server_cluster/eurekaserver1</module>
+        <module>eureka_server_cluster/eurekaserver2</module>
+        <module>eureka_server_cluster/eurekaserver3</module>
+
+        <module>euraka_ribbon/eurekaserver_single</module>
+        <module>euraka_ribbon/eureka_ribbon_client</module>
+        <module>euraka_ribbon/eureka_server_producer1</module>
+        <module>euraka_ribbon/eureka_server_producer2</module>
+        <module>euraka_ribbon/eureka_feign_client</module>
+        <module>gateway/cloudzuulgateway01</module>
+        <module>gateway/cloudzuulgateway02</module>
+        <module>gateway/cloudzuulclient</module>
+        <module>cloudconfig/springcloudconfigserver1</module>
+        <module>cloudconfig/configclient01</module>
+        <module>hystrix/hystrixsingle</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.2</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>5.0.0.Alpha1</version>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-example</artifactId>
+                <version>5.0.0.Alpha1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>3.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.marshalling</groupId>
+                <artifactId>jboss-marshalling</artifactId>
+                <version>1.4.10.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.marshalling</groupId>
+                <artifactId>jboss-marshalling-serial</artifactId>
+                <version>1.4.10.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.bcel</groupId>
+                <artifactId>bcel</artifactId>
+                <version>5.2</version>
+            </dependency>
+            <dependency>
+                <groupId>stax</groupId>
+                <artifactId>stax-api</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.woodstox</groupId>
+                <artifactId>wstx-asl</artifactId>
+                <version>3.2.9</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jibx</groupId>
+                <artifactId>jibx-bind</artifactId>
+                <version>1.2.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jibx</groupId>
+                <artifactId>jibx-run</artifactId>
+                <version>1.2.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jibx</groupId>
+                <artifactId>jibx-extras</artifactId>
+                <version>1.2.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jibx</groupId>
+                <artifactId>jibx-schema</artifactId>
+                <version>1.2.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jibx</groupId>
+                <artifactId>jibx-tools</artifactId>
+                <version>1.2.5</version>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.17</version>
+            </dependency>
+
+            <dependency>
+                <groupId>xpp3</groupId>
+                <artifactId>xpp3</artifactId>
+                <version>1.1.4c</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ogce</groupId>
+                <artifactId>xpp3</artifactId>
+                <version>1.1.6</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.ant</groupId>
+                <artifactId>ant</artifactId>
+                <version>1.9.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>2.6</version>
+            </dependency>
+            <dependency>
+                <groupId>com.thoughtworks.qdox</groupId>
+                <artifactId>qdox</artifactId>
+                <version>1.12.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.17</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>19.0</version>
+            </dependency>
+
+            <!--
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Camden.SR5</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+                <version>1.4.2.RELEASE</version>
+            </dependency>
+
+            <!--eureka 服务 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-eureka-server</artifactId>
+                <version>1.4.2.RELEASE</version>
+            </dependency>
+            <!--eureka 注册服务 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-eureka</artifactId>
+                <version>1.4.2.RELEASE</version>
+            </dependency>
+            <!--ribbon -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-ribbon</artifactId>
+                <version>1.4.2.RELEASE</version>
+            </dependency>
+            <!-- feign -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-feign</artifactId>
+                <version>1.4.2.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-hystrix</artifactId>
+                <version>1.4.2.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-config-server</artifactId>
+                <version>1.4.1.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-config-client</artifactId>
+                <version>1.4.1.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-config</artifactId>
+                <version>1.4.1.RELEASE</version>
+            </dependency>
+
+            <!--
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-config</artifactId>
+                <version>1.4.1.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-config-client</artifactId>
+                <version>1.4.1.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.16.14</version>
+                <scope>provided</scope>
+            </dependency>
+            -->
+            <!-- 支持 @ConfigurationProperties 注解 -->
+            <!--
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-configuration-processor</artifactId>
+                <version>1.5.9.RELEASE</version>
+                <optional>true</optional>
+            </dependency>
+            -->
+
+            <!-- log related -->
+            <!-- exclude掉spring-boot的默认log配置 -->
+            <!--
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            -->
+            <!-- 引入log4j2依赖 -->
+            <!--
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-log4j2</artifactId>
+            </dependency>
+            -->
+            <!-- 加上这个才能辨认到log4j2.yml文件 -->
+            <!--
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-yaml</artifactId>
+            </dependency>
+            -->
+            <!-- end of log related -->
+
+            <!--作用是用于监控与管理-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>1.5.9.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>1.5.9.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>1.5.9.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-autoconfigure</artifactId>
+                <version>1.5.9.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>1.5.9.RELEASE</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.retry</groupId>
+                <artifactId>spring-retry</artifactId>
+                <version>1.2.1.RELEASE</version>
+            </dependency>
+            <!-- spring -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>4.3.4.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.4</version>
+            </dependency>
+
+
+        </dependencies>
+
+    </dependencyManagement>
+
+</project>

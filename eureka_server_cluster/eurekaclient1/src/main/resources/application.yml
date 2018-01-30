@@ -1,0 +1,9 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:20001/eureka,http://localhost:20002/eureka/,http://localhost:20003/eureka/
+server:
+  port: 30011
+spring:
+  application:
+    name: hello-client

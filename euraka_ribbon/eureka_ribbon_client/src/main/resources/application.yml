@@ -1,0 +1,40 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:20011/eureka
+  instance:
+    prefer-ip-address: true
+server:
+  port: 30011
+spring:
+  application:
+    name: eureka-ribbon-client-consumer
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+management:
+  port: 54001
+  health:
+    diskspace:
+      enabled: true
+
+req_fact:
+  connect-timeout: 1000
+  connection-request-timeout: 1000
+  read-timeout: 3000
+
+eureka-ribbon-client-consumer:
+  ribbon:
+    OKToRetryOnAllOperations: true
+    MaxAutoRetries: 5
+    MaxAutoRetriesNextServer: 1
+    ConnectTimeout: 1000
+    ReadTimeout: 1000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 14000
