@@ -3,7 +3,7 @@ eureka:
     service-url:
       defaultZone: http://localhost:20011/eureka
 server:
-  port: 30012
+  port: 30010
 spring:
   application:
     name: eureka-fegin-consumer

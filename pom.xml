@@ -29,6 +29,7 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+
         <repository>
             <id>CtripReleases</id>
             <name>Ctrip Releases</name>
@@ -43,6 +44,7 @@
             <id>ctripdev-public</id>
             <url>http://maven.release.ctripcorp.com/nexus/content/groups/public/</url>
         </repository>
+
     </repositories>
 
     <modules>
@@ -57,6 +59,7 @@
 
         <module>euraka_ribbon/eurekaserver_single</module>
         <module>euraka_ribbon/eureka_ribbon_client</module>
+        <module>euraka_ribbon/eureka_ribbon_client01</module>
         <module>euraka_ribbon/eureka_server_producer1</module>
         <module>euraka_ribbon/eureka_server_producer2</module>
         <module>euraka_ribbon/eureka_feign_client</module>
@@ -66,6 +69,9 @@
         <module>cloudconfig/springcloudconfigserver1</module>
         <module>cloudconfig/configclient01</module>
         <module>hystrix/hystrixsingle</module>
+        <module>hystrix/hystrixdashboard</module>
+        <module>hystrix/hystrixturbine</module>
+
     </modules>
 
     <dependencyManagement>
@@ -146,7 +152,11 @@
                 <artifactId>log4j</artifactId>
                 <version>1.2.17</version>
             </dependency>
-
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.17</version>
+            </dependency>
             <dependency>
                 <groupId>xpp3</groupId>
                 <artifactId>xpp3</artifactId>
@@ -178,11 +188,7 @@
                 <artifactId>commons-logging</artifactId>
                 <version>1.1.1</version>
             </dependency>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
-            </dependency>
+
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
@@ -231,6 +237,23 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-hystrix</artifactId>
+                <version>1.4.2.RELEASE</version>
+            </dependency>
+
+            <!--hystrix监控程序-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
+                <version>1.4.2.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-turbine</artifactId>
+                <version>1.4.2.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-netflix-turbine</artifactId>
                 <version>1.4.2.RELEASE</version>
             </dependency>
 
@@ -347,7 +370,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-framework-bom</artifactId>
-                <version>4.3.4.RELEASE</version>
+                <version>4.3.13.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

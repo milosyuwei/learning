@@ -3,14 +3,11 @@ package com.weiyu.learning.eurekaclient.controller;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.retry.annotation.Backoff;
-import org.springframework.retry.annotation.Retryable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
-import java.sql.SQLException;
 
 /**
  * Created by weiyu on 2018/1/19.
@@ -24,6 +21,7 @@ public class WelcomeController {
     private RestTemplate restTemplate;
 
 
+    @HystrixCommand(fallbackMethod = "retryFailback")  //熔断降级机制
     @RequestMapping(value = "index")
     public String index() {
 
@@ -36,20 +34,13 @@ public class WelcomeController {
         //eureka-server-ha
         //会自动根据 EUREKA-SERVER-HA 服务名，进行ribbon 路由
         //其 restTemplate 需要有 @LoadBalanced //开启负债均衡的能力 修饰
-        //String rtn = restTemplate.getForEntity("http://SERVER-PROVIDER/calculator/add?a=1&b=2", String.class).getBody();
-        //return rtn;
-        return "hello";
-    }
-
-    @Retryable(value = {Exception.class}, maxAttempts = 2, backoff = @Backoff(delay = 5000)) //启动Retry框架重试机制
-    @RequestMapping(value = "getretry")
-    public String getretry(){
         String rtn = restTemplate.getForEntity("http://SERVER-PROVIDER/calculator/add?a=1&b=2", String.class).getBody();
         return rtn;
     }
 
-    @HystrixCommand(fallbackMethod = "retryFailback")  //熔断降级机制
-    @RequestMapping(value = "gethystrix")
+
+
+
     public String gethystrix(){
         String rtn = restTemplate.getForEntity("http://SERVER-PROVIDER/calculator/add?a=1&b=2", String.class).getBody();
         return rtn;

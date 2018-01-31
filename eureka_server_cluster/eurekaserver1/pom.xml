@@ -15,7 +15,7 @@
 		<artifactId>com.weiyu.learning.parent</artifactId>
 		<groupId>com.weiyu.learning</groupId>
 		<version>1.0</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath>../../pom.xml</relativePath> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>

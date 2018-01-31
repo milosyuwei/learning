@@ -14,3 +14,10 @@
 @EnableCircuitBreaker
 public @interface SpringCloudApplication {
 }
+
+当添加以下配置，导致  http://10.32.82.113:30011/hystrix.stream 无法获取数据
+management:
+  port: 54001
+  health:
+    diskspace:
+      enabled: true

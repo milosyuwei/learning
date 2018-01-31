@@ -110,6 +110,7 @@
             <artifactId>hystrix-metrics-event-stream</artifactId>
             <version>${com.netflix.hystrix.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.netflix.hystrix</groupId>
             <artifactId>hystrix-request-servlet</artifactId>

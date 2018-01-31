@@ -3,7 +3,9 @@ eureka:
     service-url:
       defaultZone: http://localhost:20011/eureka
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: false
+     # 此处，preferIpAddress不设置或者设为false，不能设为true，否则影响turbine的测试。turbine存在的问题：eureka.instance.hostname一致时只能检测到一个节点，会造成turbine数据不完整
+
 server:
   port: 30011
 spring:
@@ -13,24 +15,8 @@ spring:
     loadbalancer:
       retry:
         enabled: true
-management:
-  port: 54001
-  health:
-    diskspace:
-      enabled: true
 
-req_fact:
-  connect-timeout: 1000
-  connection-request-timeout: 1000
-  read-timeout: 3000
 
-eureka-ribbon-client-consumer:
-  ribbon:
-    OKToRetryOnAllOperations: true
-    MaxAutoRetries: 5
-    MaxAutoRetriesNextServer: 1
-    ConnectTimeout: 1000
-    ReadTimeout: 1000
 hystrix:
   command:
     default:

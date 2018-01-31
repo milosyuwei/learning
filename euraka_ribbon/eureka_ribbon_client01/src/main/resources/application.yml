@@ -1,0 +1,15 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:20011/eureka
+  instance:
+    hostname: ribbon
+server:
+  port: 30012
+spring:
+  application:
+    name: eureka-ribbon-client-consumer
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
