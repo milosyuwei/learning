@@ -15,7 +15,7 @@
 public @interface SpringCloudApplication {
 }
 
-当添加以下配置，导致  http://10.32.82.113:30011/hystrix.stream 无法获取数据
+#添加了 actuator 管理端口后，需要从该端口获取 hystrix.stream
 management:
   port: 54001
   health:

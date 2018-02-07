@@ -1,3 +1,4 @@
+
 eureka:
   client:
     service-url:
@@ -15,7 +16,13 @@ spring:
     loadbalancer:
       retry:
         enabled: true
-
+#添加了 actuator 管理端口后，需要从该端口获取 hystrix.stream
+management:
+  port: 30211
+  security:
+    enabled: false
+  context-path: /admin  #增加了该配置后，需要 http://localhost:31011/admin/health 这样获取信息
+                        # hystrix 也需要从 http://localhost:30211/admin/hystrix.stream获取
 
 hystrix:
   command:

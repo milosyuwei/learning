@@ -71,6 +71,8 @@
         <module>hystrix/hystrixsingle</module>
         <module>hystrix/hystrixdashboard</module>
         <module>hystrix/hystrixturbine</module>
+        <module>actuator/cloudactuator</module>
+        <module>spring_aop/springaop_step01</module>
 
     </modules>
 
@@ -273,6 +275,7 @@
                 <version>1.4.1.RELEASE</version>
             </dependency>
 
+
             <!--
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -332,12 +335,30 @@
             -->
             <!-- end of log related -->
 
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.9.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.9.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.9.0</version>
+            </dependency>
+
             <!--作用是用于监控与管理-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-actuator</artifactId>
                 <version>1.5.9.RELEASE</version>
             </dependency>
+
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
@@ -354,6 +375,12 @@
                 <artifactId>spring-boot-autoconfigure</artifactId>
                 <version>1.5.9.RELEASE</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>1.5.9.RELEASE</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -381,6 +408,19 @@
                 <version>4.5.4</version>
             </dependency>
 
+
+            <!--common log slf4j 代理-->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>1.1.11</version>
+            </dependency>
 
         </dependencies>
 

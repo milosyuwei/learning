@@ -70,6 +70,7 @@
             <artifactId>aspectjweaver</artifactId>
         </dependency>
 
+        <!--log back-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
@@ -79,7 +80,10 @@
             <artifactId>logback-classic</artifactId>
         </dependency>
 
-
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
