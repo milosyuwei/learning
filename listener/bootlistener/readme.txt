@@ -1,0 +1,6 @@
+启动过程中的可监听事件
+ApplicationStartingEvent
+ApplicationEnvironmentPreparedEvent
+ApplicationPreparedEvent
+ApplicationReadyEvent
+ApplicationFailedEvent

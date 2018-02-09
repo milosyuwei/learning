@@ -73,6 +73,8 @@
         <module>hystrix/hystrixturbine</module>
         <module>actuator/cloudactuator</module>
         <module>spring_aop/springaop_step01</module>
+        <module>listener/bootlistener</module>
+        <module>cloudconfig/springbootproperties</module>
 
     </modules>
 
@@ -189,6 +191,11 @@
                 <groupId>commons-logging</groupId>
                 <artifactId>commons-logging</artifactId>
                 <version>1.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.7</version>
             </dependency>
 
             <dependency>

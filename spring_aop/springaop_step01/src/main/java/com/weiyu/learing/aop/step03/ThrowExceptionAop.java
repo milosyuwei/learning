@@ -17,8 +17,8 @@ import java.util.Arrays;
  * @date: 2018/2/6
  * 利用 @Aspect 和 @AfterThrowing 可以在Spring boot中使用
  */
-@Aspect
-@Component
+@Aspect     //标识为Aspect
+@Component  //创建bean
 public class ThrowExceptionAop {
     private static final Logger logger = LoggerFactory.getLogger(ThrowExceptionAop.class);
     //JoinPoint joinPoint 参数可以省略
