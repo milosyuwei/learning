@@ -75,6 +75,7 @@
         <module>spring_aop/springaop_step01</module>
         <module>listener/bootlistener</module>
         <module>cloudconfig/springbootproperties</module>
+        <module>actuator/dashboard</module>
 
     </modules>
 

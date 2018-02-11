@@ -1,0 +1,42 @@
+server:
+  port: 31051
+eureka:
+  instance:
+    prefer-ip-address: false                       # 设置微服务调用地址为IP优先（缺省为false）
+  client:
+    service-url:
+      defaultZone: http://localhost:20011/eureka
+spring:
+  application:
+    name: cloudactuator-client
+
+
+
+management:
+  port: 31051 #actuator暴露接口使用的端口，为了和api接口使用的端口进行分离  #配置该端口后，其hystrix.stream也需要从该port获取
+  security:
+    enabled: true
+  context-path: /admin  #增加了该配置后，需要 http://localhost:31011/admin/health 这样获取信息
+
+security:
+  basic:
+    enabled: true
+    path: /admin
+  user:
+    name: admin
+    password: admin
+
+#增加了这个才能获取磁盘信息
+endpoints:
+  health:
+    enabled: true  #enable or disable the endpoints.
+    sensitive: false
+  metrics:
+    sensitive: false
+    enabled: true
+    id: metrics
+
+info:
+  app:
+    Name: "weiyu test"
+    Version: "1.0.0"

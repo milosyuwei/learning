@@ -1,0 +1,5 @@
+Spring Boot Admin管理监控数据
+spring boot actuator 可以监控应用的各种信息， 唯一的缺点就是返回的监控信息是JSON格式的数据，还有一点就是在微服务架构下，
+服务的实例会很多，一个个去看监控信息这似乎有点不太可能，而且这么多地址信息也只能去Eureka中去找，
+有没有一个功能能够集中的管理Eureka中的服务信息，并且可以通过界面的方式查看actuator 提供的监控信息，它就是Spring Boot Admin。
+

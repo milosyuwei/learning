@@ -30,7 +30,7 @@ public class CalculatorController {
         logger.info(rtn);
         //返回结果
         //Thread.sleep(2*60*1000);
-        throw new Exception("");
-        //return rtn;
+        //throw new Exception("");
+        return rtn;
     }
 }
