@@ -18,33 +18,16 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
+        <grpc.version>1.10.0</grpc.version>
+        <ribbon.version>2.2.4</ribbon.version>
     </properties>
 
     <repositories>
         <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
+            <id>maven2-repository.dev.java.net</id>
+            <name>Java.net Repository for Maven 2</name>
+            <url>http://repo.maven.apache.org/maven2/</url>
         </repository>
-
-        <repository>
-            <id>CtripReleases</id>
-            <name>Ctrip Releases</name>
-            <url>http://maven.release.ctripcorp.com/nexus/content/groups/CtripReleases/</url>
-        </repository>
-        <repository>
-            <id>ctripdev-framework</id>
-            <name>Ctrip FrameWork Mirror</name>
-            <url>http://maven.release.ctripcorp.com/nexus/content/repositories/fxrelease/</url>
-        </repository>
-        <repository>
-            <id>ctripdev-public</id>
-            <url>http://maven.release.ctripcorp.com/nexus/content/groups/public/</url>
-        </repository>
-
     </repositories>
 
     <modules>
@@ -76,6 +59,9 @@
         <module>listener/bootlistener</module>
         <module>cloudconfig/springbootproperties</module>
         <module>actuator/dashboard</module>
+        <module>grpc/comweiyulearningribbon</module>
+        <module>grpc/grpc_sample</module>
+        <module>task/comweiyulearningtask</module>
 
     </modules>
 
@@ -97,11 +83,34 @@
                 <artifactId>netty-example</artifactId>
                 <version>5.0.0.Alpha1</version>
             </dependency>
+
+            <!-- google-->
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-all</artifactId>
+                <version>${grpc.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.google.protobuf</groupId>
                 <artifactId>protobuf-java</artifactId>
-                <version>3.1.0</version>
+                <version>3.5.1</version>
             </dependency>
+            <dependency>
+                <groupId>com.google.api.grpc</groupId>
+                <artifactId>proto-google-common-protos</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.8.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>19.0</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.jboss.marshalling</groupId>
                 <artifactId>jboss-marshalling</artifactId>
@@ -199,11 +208,7 @@
                 <version>3.7</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>19.0</version>
-            </dependency>
+
 
             <!--
             <dependency>
@@ -429,6 +434,41 @@
                 <artifactId>logback-classic</artifactId>
                 <version>1.1.11</version>
             </dependency>
+
+
+            <dependency>
+                <groupId>com.netflix.ribbon</groupId>
+                <artifactId>ribbon-loadbalancer</artifactId>
+                <version>${ribbon.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.netflix.ribbon</groupId>
+                <artifactId>ribbon-core</artifactId>
+                <version>${ribbon.version}</version>
+            </dependency>
+
+            <!--
+            <dependency>
+                <groupId>io.reactivex</groupId>
+                <artifactId>rxjava</artifactId>
+                <version>1.0.10</version>
+            </dependency>
+            -->
+
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>1.9.5</version>
+                <scope>test</scope>
+            </dependency>
+
 
         </dependencies>
 

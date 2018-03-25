@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="cacheEnabled" value="false"/>
+        <setting name="useGeneratedKeys" value="true"/>
+        <setting name="defaultExecutorType" value="REUSE"/>
+    </settings>
+
+
+    <!--
+    <typeHandlers>
+        <typeHandler handler="com.weiyu.learning.task.utils.mybatis.type.EnumTypeHandler"
+                     javaType="com.ctrip.risk.deepcredit.domain.model.collection.WorkSheetStatus" />
+    </typeHandlers>
+    -->
+
+    <plugins>
+        <plugin interceptor="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">
+            <property name="dialectClass" value="com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect"/>
+        </plugin>
+    </plugins>
+
+    <mappers>
+        <mapper resource="mybatis/persistence/taskmonitorlogdb/TaskLogMapper.xml"/>
+    </mappers>
+</configuration>

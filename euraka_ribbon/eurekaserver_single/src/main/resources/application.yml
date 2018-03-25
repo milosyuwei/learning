@@ -8,7 +8,7 @@ eureka:
   instance:
     hostname: localhost
   server:
-    enable-self-preservation: true # 自我保护模式
+    enable-self-preservation: false # 自我保护模式
     eviction-interval-timer-in-ms: 1000 # 续期时间，即扫描失效服务的间隔时间（缺省为60*1000ms）
 
   client:

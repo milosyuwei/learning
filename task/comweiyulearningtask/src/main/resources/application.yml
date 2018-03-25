@@ -1,0 +1,33 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:20011/eureka
+server:
+  port: 35001
+spring:
+  application:
+    name: tast-manager
+  datasource:
+    taskMonitorDb:
+      url: jdbc:mysql://127.0.0.1:3306/taskmonitordb?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: root
+      driver-class-name: com.mysql.jdbc.Driver
+
+    taskmonitorLogDb:
+      url: jdbc:mysql://127.0.0.1:3306/taskmonitor_logdb?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: root
+      driver-class-name: com.mysql.jdbc.Driver
+
+
+feign:
+  hystrix:
+    enabled: true #必须加这个，feign的hystrix才能有效
+
+#可以使用默认的配置，org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration 创建mybatis数据源
+#也可以自己配置，使用自定义 MybatisSqlSessionFactory
+#多个数据源，修改　spring.datasource 配置，增加 taskMonotorDb
+
+#mybatis:
+#  config-location: classpath:mybatis/mybatis-config-taskdb.xml

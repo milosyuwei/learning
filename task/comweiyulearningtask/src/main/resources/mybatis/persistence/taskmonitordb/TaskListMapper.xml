@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.weiyu.learning.task.dao.taskmanagerdb.mapper.TaskListMapper">
+    <resultMap id="TaskConfig" type="com.weiyu.learning.task.dao.taskmanagerdb.TaskConfig" >
+        <id column="taskName" javaType="String" property="taskName"/>
+        <result column="jobCron" property="jobCron" javaType="String"/>
+        <result column="instanceModel" property="instanceModel" javaType="com.weiyu.learning.task.dao.taskmanagerdb.TaskConfigInstanceModel"/>
+        <result column="jobContent" property="jobContent" javaType="String"/>
+        <result column="jobStatus" property="jobStatus" javaType="com.weiyu.learning.task.dao.taskmanagerdb.TaskConfigJobStatus"/>
+        <result column="classPath" property="classPath" javaType="String"/>
+        <result column="processMothod" property="processMothod" javaType="String"/>
+        <result column="mothodParameter" property="mothodParameter" javaType="String"/>
+        <result column="remarks" property="remarks" javaType="String"/>
+        <result column="DataChange_LastTime" property="dataChangeLastTime" javaType="Date"/>
+
+        <!--
+        可以使用构造函数注入
+        <constructor>
+            <idArg  column="taskName"                     javaType="String"/>
+            <arg    column="job_cron"                javaType="String" />
+            <arg    column="multi_Instance"            javaType="Integer" />
+            <arg    column="jobContent" javaType="String"/>
+            <arg    column="remarks"            javaType="String"/>
+            <arg    column="jobStatus"          javaType="com.weiyu.learning.task.dao.taskmanagerdb.TaskListJobStatus"/>
+            <arg    column="workIps"            javaType="String" />
+            <arg    column="DATACHANGE_LASTTIME"    javaType="Date" />
+        </constructor>
+        -->
+    </resultMap>
+
+    <select id="selectActiveTaskList" resultMap="TaskConfig">
+        SELECT * FROM task_config WHERE jobStatus = 1
+    </select>
+</mapper>
