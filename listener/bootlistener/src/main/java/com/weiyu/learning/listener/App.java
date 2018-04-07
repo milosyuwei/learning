@@ -29,6 +29,5 @@ public class App {
         app.addListeners(new MyApplicationPreparedEvent());  //上下文准备好
         app.run(args);
 
-
     }
 }
