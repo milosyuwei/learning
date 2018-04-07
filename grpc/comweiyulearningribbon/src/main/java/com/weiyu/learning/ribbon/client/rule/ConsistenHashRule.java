@@ -116,7 +116,9 @@ public class ConsistenHashRule extends AbstractLoadBalancerRule {
                 if (StringUtils.isBlank(jsonKey))
                     return incrementAndGetModulo(serverCount);
                 else {
-                    return hash(jsonKey)% serverCount;
+                	//hashcode 与  0x7FFFFFFF 进行 与 运算 保证是一个正数
+                	int index = (hash(jsonKey) & 0x7FFFFFFF) % serverCount;
+                    return index ;
                 }
             }
         } catch (Exception e) {

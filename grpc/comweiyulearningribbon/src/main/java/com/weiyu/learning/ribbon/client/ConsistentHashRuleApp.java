@@ -24,70 +24,54 @@ import java.util.concurrent.Executors;
  */
 public class ConsistentHashRuleApp {
 
-    private static final Logger logger = LoggerFactory.getLogger(BestAvailableRuleApp.class);
+	private static final Logger logger = LoggerFactory.getLogger(BestAvailableRuleApp.class);
 
+	private final ILoadBalancer loadBalancer;
+	// retry handler that does not retry on same server, but on a different server
+	private final RetryHandler retryHandler = new DefaultLoadBalancerRetryHandler(0, 1, true);
 
-    private final ILoadBalancer loadBalancer;
-    // retry handler that does not retry on same server, but on a different server
-    private final RetryHandler retryHandler = new DefaultLoadBalancerRetryHandler(0, 1, true);
+	public ConsistentHashRuleApp(List<Server> serverList) {
 
+		// 最少并发数策略
+		loadBalancer = LoadBalancerBuilder.newBuilder().withRule(new ConsistenHashRule())
+				.buildFixedServerListLoadBalancer(serverList);
+	}
 
-    public ConsistentHashRuleApp(List<Server> serverList) {
+	public String call(final String path, final String key) throws Exception {
+		return LoadBalancerCommand.<String>builder().withLoadBalancer(loadBalancer).withServerLocator(key)
+				.withRetryHandler(retryHandler).build().submit(new ServerOperation<String>() {
+					@Override
+					public Observable<String> call(Server server) {
+						URL url;
+						try {
+							System.out.println(String.format("%s:%s", server.getHost(), server.getPort()));
 
-        //最少并发数策略
-        loadBalancer = LoadBalancerBuilder.newBuilder().withRule(
-                new ConsistenHashRule()
-        ).buildFixedServerListLoadBalancer(serverList);
-    }
+							url = new URL("http://" + server.getHost() + ":" + server.getPort() + path);
+							HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+							return Observable.just(conn.getResponseMessage());
+						} catch (Exception e) {
+							return Observable.error(e);
+						}
+					}
+				}).toBlocking().first();
+	}
 
+	public LoadBalancerStats getLoadBalancerStats() {
+		return ((BaseLoadBalancer) loadBalancer).getLoadBalancerStats();
+	}
 
-    public String call(final String path,final String key) throws Exception {
-        return LoadBalancerCommand.<String>builder()
-                .withLoadBalancer(loadBalancer)
-                .withServerLocator(key)
-                .withRetryHandler(retryHandler)
-                .build()
-                .submit(new ServerOperation<String>() {
-                    @Override
-                    public Observable<String> call(Server server) {
-                        URL url;
-                        try {
-                            System.out.println(String.format("%s:%s",server.getHost(),server.getPort()));
+	public static void main(String[] args) throws Exception {
+		ConsistentHashRuleApp urlLoadBalancer = new ConsistentHashRuleApp(Lists.newArrayList(
+				new Server("www.ctrip.com", 80), new Server("www.163.com", 80), new Server("www.baidu.com", 80),
+				new Server("www.taobao.com", 80), new Server("www.jd.com", 80)));
 
-                            url = new URL("http://" + server.getHost() + ":" + server.getPort() + path);
-                            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                            return Observable.just(conn.getResponseMessage());
-                        } catch (Exception e) {
-                            return Observable.error(e);
-                        }
-                    }
-                }).toBlocking().first();
-    }
+		for (int i = 0; i < 20; i++) {
+			System.out.println(urlLoadBalancer.call("/", i + ""));
+		}
 
-    public LoadBalancerStats getLoadBalancerStats() {
-        return ((BaseLoadBalancer) loadBalancer).getLoadBalancerStats();
-    }
-
-    public static void main(String[] args) throws Exception {
-        ConsistentHashRuleApp urlLoadBalancer = new ConsistentHashRuleApp(Lists.newArrayList(
-                new Server("www.ctrip.com", 80),
-                new Server("www.163.com", 80),
-                new Server("www.baidu.com", 80),
-                new Server("www.taobao.com", 80),
-                new Server("www.jd.com", 80)
-        ));
-
-         for (int i = 0; i < 20; i++) {
-         System.out.println(urlLoadBalancer.call("/",i+""));
-         }
-
-
-
-
-
-        System.out.println("=== Load balancer stats ===");
-        System.out.println(urlLoadBalancer.getLoadBalancerStats());
-        Thread.sleep(10000);
-        System.exit(0);
-    }
+		System.out.println("=== Load balancer stats ===");
+		System.out.println(urlLoadBalancer.getLoadBalancerStats());
+		Thread.sleep(10000);
+		System.exit(0);
+	}
 }
