@@ -1,6 +1,7 @@
 package com.weiyu.learning.ribbon.client;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.netflix.client.DefaultLoadBalancerRetryHandler;
 import com.netflix.client.RetryHandler;
 import com.netflix.loadbalancer.*;
@@ -14,6 +15,7 @@ import rx.Observable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -32,9 +34,10 @@ public class ConsistentHashRuleApp {
 
 	public ConsistentHashRuleApp(List<Server> serverList) {
 
-		// 最少并发数策略
+		// Hash策略
 		loadBalancer = LoadBalancerBuilder.newBuilder().withRule(new ConsistenHashRule())
 				.buildFixedServerListLoadBalancer(serverList);
+		
 	}
 
 	public String call(final String path, final String key) throws Exception {
@@ -61,9 +64,16 @@ public class ConsistentHashRuleApp {
 	}
 
 	public static void main(String[] args) throws Exception {
-		ConsistentHashRuleApp urlLoadBalancer = new ConsistentHashRuleApp(Lists.newArrayList(
-				new Server("www.ctrip.com", 80), new Server("www.163.com", 80), new Server("www.baidu.com", 80),
-				new Server("www.taobao.com", 80), new Server("www.jd.com", 80)));
+		Map<String,Server> serversMap = Maps.newHashMap();
+		
+		serversMap.put("ctrip", new Server("www.ctrip.com", 80));
+		serversMap.put("163", new Server("www.163.com", 80));
+		serversMap.put("baidu", new Server("www.baidu.com", 80));
+		serversMap.put("taobao", new Server("www.taobao.com", 80));
+		serversMap.put("jd", new Server("www.jd.com", 80));
+		
+
+		ConsistentHashRuleApp urlLoadBalancer = new ConsistentHashRuleApp(Lists.newArrayList(serversMap.values()));
 
 		for (int i = 0; i < 20; i++) {
 			System.out.println(urlLoadBalancer.call("/", i + ""));
@@ -72,6 +82,8 @@ public class ConsistentHashRuleApp {
 		System.out.println("=== Load balancer stats ===");
 		System.out.println(urlLoadBalancer.getLoadBalancerStats());
 		Thread.sleep(10000);
+		
+		
 		System.exit(0);
 	}
 }

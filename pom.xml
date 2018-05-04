@@ -62,6 +62,8 @@
         <module>grpc/comweiyulearningribbon</module>
         <module>grpc/grpc_sample</module>
         <module>task/comweiyulearningtask</module>
+        <module>bpmn/activiti_project</module>
+        <module>socketlearning</module>
 
     </modules>
 
@@ -197,18 +199,18 @@
                 <artifactId>qdox</artifactId>
                 <version>1.12.1</version>
             </dependency>
-            <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging</artifactId>
-                <version>1.1.1</version>
-            </dependency>
+
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.7</version>
             </dependency>
 
-
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.6</version>
+            </dependency>
 
             <!--
             <dependency>
@@ -293,7 +295,8 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-config</artifactId>
-                <version>1.4.1.RELEASE</version>
+                <version>1.4.1.RELEASE
+                </version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -301,12 +304,7 @@
                 <version>1.4.1.RELEASE</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.16.14</version>
-                <scope>provided</scope>
-            </dependency>
+
             -->
             <!-- 支持 @ConfigurationProperties 注解 -->
             <!--
@@ -455,7 +453,11 @@
             </dependency>
             -->
 
-
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.16.16</version>
+            </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
